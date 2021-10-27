@@ -57,7 +57,7 @@ class MemoryCollection implements CollectionInterface
      */
     public function count(): int
     {
-        return count($this->data) + 1;
+        return count(is_countable($this->data)? $this->data:[]);
     }
 
     /**
@@ -65,6 +65,6 @@ class MemoryCollection implements CollectionInterface
      */
     public function clean()
     {
-        $this->data = [];
+        $this->data = null;
     }
 }
