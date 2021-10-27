@@ -81,5 +81,5 @@ $ composer test
 [icon-travisci]: https://img.shields.io/travis/liveecommerce/php-test.svg?style=flat-square
 [icon-codecov]: https://img.shields.io/codecov/c/github/liveecommerce/php-test.svg?style=flat-square
 
-[link-travisci]: https://travis-ci.org/liveecommerce/php-test
-[link-codecov]: https://codecov.io/gh/liveecommerce/php-test
+[link-travisci]: https://app.travis-ci.com/Davi-zzz/php-test
+[link-codecov]: https://codecov.io/gh/Davi-zzz/php-test

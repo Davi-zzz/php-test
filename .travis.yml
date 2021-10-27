@@ -16,6 +16,9 @@ before-install:
 install:
   - composer install --prefer-source --no-interaction --dev
 
+env:
+  - CODECOV_TOKEN=<6990f2b7-0638-4835-8d2a-a0efcb6612d0>
+
 script:
   - composer check
   - composer test
