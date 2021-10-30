@@ -39,9 +39,11 @@ class MemoryCollection implements CollectionInterface
     /**
      * {@inheritDoc}
      */
-    public function set(string $index, $value)
+    public function set(string $index, $value, $days_to_expire = 1)
     {
-        $this->data[$index] = $value;
+        $day_to_expire_modified = (date_create())->modify("+ $days_to_expire days");
+        $this->data[$index] = [ 'value' => $value, 'days_to_expire' => $day_to_expire_modified->format('Y-m-d H:i:s')];
+        
     }
 
     /**

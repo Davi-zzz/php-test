@@ -1,5 +1,4 @@
 <?php
-
 namespace Live\Collection;
 
 use PHPUnit\Framework\TestCase;
@@ -31,16 +30,31 @@ class MemoryCollectionTest extends TestCase
         $collection->set('index5', ['data']);
     }
 
-     /**
-     * @test
-     * @depends dataCanBeAdded
-     */
+    /**
+    * @test
+    * @depends dataCanBeAdded
+    */
     public function dataCanBeRetrieved()
     {
         $collection = new MemoryCollection();
         $collection->set('index1', 'value');
 
-        $this->assertEquals('value', $collection->get('index1'));
+        $this->assertEquals('value', $collection->get('index1')['value']);
+    }
+
+    /**
+     * @test
+     * @depends objectCanBeConstructed
+     */
+    public function dataCanBeRetrievedWithExpirationDate()
+    {
+        $collection = new MemoryCollection();
+        $collection->set('index_expired', 'value', 10);
+        $days_to_expired_expected = date_create()->modify("+ 10 days")->format('Y-m-d');
+    
+        $item = $collection->get('index_expired');
+        $this->assertEquals('value', $item['value']);
+        $this->assertStringContainsString($days_to_expired_expected, $item['days_to_expire']);
     }
 
     /**
@@ -92,7 +106,7 @@ class MemoryCollectionTest extends TestCase
         $collection->clean();
         $this->assertEquals(0, $collection->count());
     }
-
+    
     /**
      * @test
      * @depends dataCanBeAdded

@@ -1,5 +1,4 @@
 # Live eCommerce - Teste para PHP
-
 [![TravisCI][icon-travisci]][link-travisci]
 [![Code Coverage][icon-codecov]][link-codecov]
 
