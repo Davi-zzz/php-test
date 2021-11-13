@@ -15,10 +15,11 @@ class FileCollection extends MemoryCollection
      */
     protected $file_path;
 
-    //gives the filename **opcional**
+    //gives the filename **optional**
     public function __construct($filename = 'default_file.txt')
     {
         $this->file_path = __DIR__ . DIRECTORY_SEPARATOR . 'storaged_data' . DIRECTORY_SEPARATOR . $filename;
+        fopen($this->file_path, 'a');
     }
 
     /**
@@ -27,7 +28,6 @@ class FileCollection extends MemoryCollection
     public function write()
     {
         try {
-            fopen($this->file_path, 'a');
             $has_first_line_on_file = fgets(fopen($this->file_path, 'r+'), 65535) == null;
             $include_comma = $has_first_line_on_file ? '' : ',';
             fwrite(fopen($this->file_path, 'r+'), json_encode($this->data));
@@ -47,10 +47,11 @@ class FileCollection extends MemoryCollection
             $result = file_get_contents($this->file_path);
             $result = json_decode($result, true);
             $this->data = $result;
+            var_dump($this->data);
             return $this->data;
         } catch (\Exception $e) {
             //throw $th;
-            return false;
+            return [];
         }
     }
 }

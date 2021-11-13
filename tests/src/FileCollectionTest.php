@@ -33,6 +33,9 @@ class FileCollectionTest extends TestCase
     public function dataCanBeRead()
     {
         $collection = new FileCollection();
+        
+        $collection->set('data', 'value');
+        $collection->write();
         $this->assertGreaterThan(0, count($collection->read()));
     }
 }
