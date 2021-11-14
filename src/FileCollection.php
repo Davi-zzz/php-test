@@ -19,7 +19,7 @@ class FileCollection extends MemoryCollection
     public function __construct($filename = 'default_file.txt')
     {
         $this->file_path = __DIR__ . DIRECTORY_SEPARATOR . 'storaged_data' . DIRECTORY_SEPARATOR . $filename;
-        fopen($this->file_path, 'a');
+        \file_put_contents($this->file_path, '');
     }
 
     /**
@@ -47,7 +47,6 @@ class FileCollection extends MemoryCollection
             $result = file_get_contents($this->file_path);
             $result = json_decode($result, true);
             $this->data = $result;
-            var_dump($this->data);
             return $this->data;
         } catch (\Exception $e) {
             //throw $th;
