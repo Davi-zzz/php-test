@@ -23,7 +23,7 @@ class FileCollectionTest extends TestCase
     {
         $collection = new FileCollection('data_saved.txt');
         $collection->set('data', 'value');
-        $this->assertTrue( $collection->write());
+        $this->assertTrue($collection->write());
     }
     
     /**
